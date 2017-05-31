@@ -1,16 +1,17 @@
 import java.util.*;
 import java.io.*;
 public class Action{
-    int p1Score;
-    int p2Score;
-    int p3Score;
-    int p4Score;
     String[][] tileBag;
-    public Action(){
+    Tile[] bag;
 
+    public Action(){
     }
 
-    public void makeBag(String filename){
+    public Tile getBag(int index){
+	return bag[index];
+    }
+    
+    public void readBag(String filename){
 	try{
 	    File text= new File(filename);
 	    Scanner data = new Scanner(text);
@@ -29,6 +30,21 @@ public class Action{
 	}
     }
 
+    public void makeBag(){
+	bag=new Tile[100];
+	int index=0;
+	for(int r=0; r<26; r++){
+	    Tile t = new Tile(tileBag[r][0], Integer.parseInt(tileBag[r][1]));
+	    for(int x = Integer.parseInt(tileBag[r][2]); x>0; x--){
+		bag[index]=t;
+		index++;
+	    }
+	}
+	
+    }
+		    
+		    
+
     public String toString(){
 	String str="";
 	for(int r=0; r<tileBag.length; r++){
@@ -39,11 +55,25 @@ public class Action{
 	}
 	return str;
     }
+
+    public String toStringTile(){
+	String str="";
+	for(int x=0; x<bag.length; x++){
+	    str+=bag[x].getLetter()+" ";
+	}
+	return str;
+    }
+
 		
     public static void main(String[]args){
 	Action test = new Action();
-	test.makeBag("tileBag.txt");
+	test.readBag("tileBag.txt");
 	System.out.println(test.toString());
+	test.makeBag();
+	//test.toStringTile();
+	Tile x = test.getBag(0);
+	System.out.println(x.getLetter());
+	
     }
 
 	    
