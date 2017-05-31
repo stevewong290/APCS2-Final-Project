@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class wordBank{
+public class WordBank{
     public static ArrayList<String> allWords;
     public static ArrayList<String> two;
     public static ArrayList<String> three;
@@ -20,7 +20,7 @@ public class wordBank{
     
     
     //
-    public wordBank(String filename){
+    public WordBank(String filename){
 	try{
 	    allWords = new ArrayList<String>();
 	    File text = new File(filename);
@@ -136,7 +136,45 @@ public class wordBank{
 	    if(s.length() == 2){
 		return binarySearch(two, s, 0, two.size() - 1);
 	    }
-	    return false;
+	    else if(s.length() == 3){
+		return binarySearch(three, s, 0, three.size() - 1);
+	    }
+	    else if(s.length() == 4){
+		return binarySearch(four, s, 0, four.size() - 1);
+	    }
+	    else if(s.length() == 5){
+		return binarySearch(five, s, 0, five.size() - 1);
+	    }
+	    else if(s.length() == 6){
+		return binarySearch(six, s, 0, six.size() - 1);
+	    }
+	    else if(s.length() == 7){
+		return binarySearch(seven, s, 0, seven.size() - 1);
+	    }
+	    else if(s.length() == 8){
+		return binarySearch(eight, s, 0, eight.size() - 1);
+	    }
+	    else if(s.length() == 9){
+		return binarySearch(nine, s, 0, nine.size() - 1);
+	    }
+	    else if(s.length() == 10){
+		return binarySearch(ten, s, 0, ten.size() - 1);
+	    }
+	    else if(s.length() == 11){
+		return binarySearch(eleven, s, 0, eleven.size() - 1);
+	    }
+	    else if(s.length() == 12){
+		return binarySearch(twelve, s, 0, twelve.size() - 1);
+	    }
+	    else if(s.length() == 13){
+		return binarySearch(thirteen, s, 0, thirteen.size() - 1);
+	    }
+	    else if(s.length() == 14){
+		return binarySearch(fourteen, s, 0, fourteen.size() - 1);
+	    }
+	    else{
+		return binarySearch(fifteen, s, 0, fifteen.size() - 1);
+	    }
 	}
     }
 
@@ -184,7 +222,7 @@ public class wordBank{
     } 
     
     public static void main(String[] args){
-	wordBank s = new wordBank("words.txt");
+	WordBank s = new WordBank("words.txt");
         System.out.println(longestWord(allWords));
 	sort(allWords);
 	System.out.println(two.size());
@@ -208,6 +246,7 @@ public class wordBank{
 	System.out.println(search("EG"));
 	System.out.println(checkWord("EG"));
 	System.out.println(checkWord("ED"));
+	System.out.println(checkWord("PARCHED"));
 	//System.out.println(s);
 
     }
