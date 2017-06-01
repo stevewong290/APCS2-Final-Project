@@ -15,8 +15,8 @@ public class Action{
 	try{
 	    File text= new File(filename);
 	    Scanner data = new Scanner(text);
-	    tileBag=new String[26][3];
-	    for(int r=0;r<26;r++){
+	    tileBag=new String[27][3];
+	    for(int r=0;r<27;r++){
 		String line=data.nextLine();
 		String[] lineList = line.split(" ");
 		for(int c=0; c<3; c++){
@@ -33,7 +33,7 @@ public class Action{
     public void makeBag(){
 	bag=new Tile[100];
 	int index=0;
-	for(int r=0; r<26; r++){
+	for(int r=0; r<27; r++){
 	    Tile t = new Tile(tileBag[r][0], Integer.parseInt(tileBag[r][1]));
 	    for(int x = Integer.parseInt(tileBag[r][2]); x>0; x--){
 		bag[index]=t;
@@ -71,7 +71,7 @@ public class Action{
 	System.out.println(test.toString());
 	test.makeBag();
 	//test.toStringTile();
-	Tile x = test.getBag(0);
+	Tile x = test.getBag(98);
 	System.out.println(x.getLetter());
 	
     }
