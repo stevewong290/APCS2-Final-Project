@@ -12,19 +12,17 @@ public class Board{
 	scoreRef = new int[15][15];
 	gameBoard = new Tile[15][15];
     }
-    public void afterPlay(ArrayList<String> used){
+    public static void afterPlay(ArrayList<String> used){
 	char c = 'A';
 	int valC = 0;
-	if(used.size() > 0){
+	while(used.size() > 0){
 	    c = used.get(0).charAt(0);
-	    valC = (int) c - 64;
-	    availTiles.get
-	}
-	    
+	    valC = (int) c - 65;
+	    availTiles.set(valC, availTiles.get(valC) - 1); 
+	    used.remove(0);
+	}	    
     }
-    public void change(int index, ArrayList<String> used){
-	
-    }
+    
     public static void clear(ArrayList<String> used){
 	while(used.size() > 0){
 	    used.remove(0);
@@ -39,8 +37,13 @@ public class Board{
 	return ans;
     }
     public static void main(String[] args){
-	//	usedTiles.add("A");
-	//	usedTiles.add("B");
+	usedTiles.add("A");
+	usedTiles.add("B");
+	availTiles.add(1);
+	availTiles.add(2);
+	afterPlay(usedTiles);
+	System.out.println(availTiles);
+	System.out.println(usedTiles);
 	//	clear(usedTiles);
 	//	System.out.println(returnString(usedTiles));
     }
