@@ -12,8 +12,13 @@ public class Board{
 	scoreRef = new int[15][15];
 	gameBoard = new Tile[15][15];
     }
+
+    public static void reader(/*something*/ ){
+
+    }
+
     public static void afterPlay(ArrayList<String> used){
-	char c = 'A';
+	char c = 'A';1
 	int valC = 0;
 	while(used.size() > 0){
 	    c = used.get(0).charAt(0);
