@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 
 public class Board{
     int[][] scoreRef;
@@ -13,12 +14,24 @@ public class Board{
 	gameBoard = new Tile[15][15];
     }
 
-    public static void reader(/*something*/ ){
-
+    public static void reader(String filename){
+	try{
+	    File text = new File(filename);
+	    Scanner infile = new Scanner(text);
+	    while(infile.hasNextLine()){
+		String line = infile.nextLine();
+		line = line.substring(4);
+		int add = Integer.parseInt(line);
+		availTiles.add(add);
+	    }
+	}
+	catch(FileNotFoundException e){
+	    System.out.println("Missing File");
+	}
     }
 
     public static void afterPlay(ArrayList<String> used){
-	char c = 'A';1
+	char c = 'A';
 	int valC = 0;
 	while(used.size() > 0){
 	    c = used.get(0).charAt(0);
@@ -42,13 +55,14 @@ public class Board{
 	return ans;
     }
     public static void main(String[] args){
-	usedTiles.add("A");
-	usedTiles.add("B");
-	availTiles.add(1);
-	availTiles.add(2);
-	afterPlay(usedTiles);
+	reader("tileBag.txt");
+	//usedTiles.add("A");
+	//usedTiles.add("B");
+	//	availTiles.add(1);
+	//	availTiles.add(2);
+	/*	afterPlay(usedTiles);
 	System.out.println(availTiles);
-	System.out.println(usedTiles);
+	System.out.println(usedTiles);*/
 	//	clear(usedTiles);
 	//	System.out.println(returnString(usedTiles));
     }
