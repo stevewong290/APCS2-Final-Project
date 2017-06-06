@@ -1,3 +1,5 @@
+import java.util.*;
+import java.io.*;
 public class Action{
     String[][] tileBag;
     ArrayList<Tile> bag;
@@ -70,7 +72,34 @@ public class Action{
 		
     }
 		    
+    //public playTile(int x, int y, Tile t){
+    //}
+    
+    public ArrayList<Tile> scramble(ArrayList<Tile> hand){
+	ArrayList<Tile> newHand = new ArrayList<Tile>();
+	for(int x = 0; x<7; x++){
+	    int index = (int)(Math.random() * (hand.size()));
+	    Tile t = hand.get(index);
+	    newHand.add(t);
+	    hand.remove(index);
+	}
+	return newHand;
+    }
 
+    public void exchange(ArrayList<Tile> hand, Tile t){
+	int index = -1;
+	for(int x=0; x<hand.size(); x++){
+	    if(hand.get(x).getLetter().equals(t.getLetter())){
+		index = x;
+		x = 8;
+		hand.remove(index);
+	    }
+	}
+	bag.add(t);
+	draw(hand);
+    }
+	    
+    
     public String toString(){
 	String str="";
 	for(int r=0; r<tileBag.length; r++){
@@ -102,7 +131,7 @@ public class Action{
     public static void main(String[]args){
 	Action test = new Action();
 	test.readBag("tileBag.txt");
-	System.out.println(test.toString());
+	//System.out.println(test.toString());
 	test.makeBag();
 	System.out.println(test.toStringTile());
 	//Tile x = test.getBag(98);
