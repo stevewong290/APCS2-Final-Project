@@ -20,7 +20,7 @@ public class Board{
 	    Scanner infile = new Scanner(text);
 	    while(infile.hasNextLine()){
 		String line = infile.nextLine();
-		line = line.substring(4);
+		line = line.substring(5);
 		int add = Integer.parseInt(line);
 		availTiles.add(add);
 	    }
@@ -55,14 +55,14 @@ public class Board{
 	return ans;
     }
     public static void main(String[] args){
-	reader("tileBag.txt");
-	//usedTiles.add("A");
-	//usedTiles.add("B");
+	reader("tileBag2.txt");
+	usedTiles.add("A");
+	usedTiles.add("B");
 	//	availTiles.add(1);
 	//	availTiles.add(2);
-	/*	afterPlay(usedTiles);
+	afterPlay(usedTiles);
 	System.out.println(availTiles);
-	System.out.println(usedTiles);*/
+	System.out.println(usedTiles);
 	//	clear(usedTiles);
 	//	System.out.println(returnString(usedTiles));
     }
