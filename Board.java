@@ -29,7 +29,9 @@ public class Board{
 	    System.out.println("Missing File");
 	}
     }
-
+    public static Tile[][] get(){
+	return gameBoard;
+    }
     public static void afterPlay(ArrayList<String> used){
 	char c = 'A';
 	int valC = 0;
