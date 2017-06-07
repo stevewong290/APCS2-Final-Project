@@ -81,6 +81,10 @@ public class Board{
 	    used.remove(0);
 	}	    
     }
+
+    public static void set(int r, int c, Tile[][] board, Tile a){
+	board[r][c] = a;
+    }
     
     public static void clear(ArrayList<String> used){
 	while(used.size() > 0){
@@ -101,6 +105,18 @@ public class Board{
 	for(int r = 0; r < 15; r++){
 	    for(int c = 0; c < 15; c++){
 		ans = ans + arr[r][c] + " ";
+	    }
+	    ans += '\n';
+	}
+	return ans;
+
+    }
+
+    public static String tileArrayString(Tile[][] tileArr){
+	String ans = "";
+	for(int r = 0; r < 15; r++){
+	    for(int c = 0; c < 15; c++){
+		ans = ans + tileArr[r][c] + " ";
 	    }
 	    ans += '\n';
 	}
