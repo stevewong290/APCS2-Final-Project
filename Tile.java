@@ -13,4 +13,7 @@ public class Tile{
     public int getValue(){
 	return value;
     }
+    public String toString(){
+	return letter;
+    }
 }
