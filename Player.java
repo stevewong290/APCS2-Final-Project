@@ -29,4 +29,13 @@ public class Player{
      public ArrayList<String> getWordsPlayed(){
 	return wordsPlayed;
     }
+
+    public void setScore(int x){
+	score = x;
+    }
+
+    public void setName(String n){
+	name = n;
+    }
+    
 }
