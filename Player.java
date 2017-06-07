@@ -5,4 +5,28 @@ public class Player{
     String name;
     ArrayList<Integer> playerScores;
     ArrayList<String> wordsPlayed;
+
+    public Player(){
+	name = "";
+	score = 0;
+	hand = new ArrayList<Tile>();
+	playerScores = new ArrayList<Integer>();
+	wordsPlayed = new ArrayList<String>();
+    }
+
+    public int getScore(){
+	return score;
+    }
+
+    public ArrayList<Tile> getHand(){
+	return hand;
+    }
+
+    public ArrayList<Integer> getPlayerScores(){
+	return playerScores;
+    }
+
+     public ArrayList<String> getWordsPlayed(){
+	return wordsPlayed;
+    }
 }
