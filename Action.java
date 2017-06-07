@@ -8,6 +8,7 @@ public class Action{
     Board gameBoard;
     Tile[][] tileBoard;
 
+    // figure out used tile situation
     public Action(){
 	readBag("tileBag.txt");
 	makeBag();
@@ -145,12 +146,7 @@ public class Action{
 		
     public static void main(String[]args){
 	Action test = new Action();
-	test.readBag("tileBag.txt");
-	//System.out.println(test.toString());
-	test.makeBag();
 	System.out.println(test.toStringTile());
-	//Tile x = test.getBag(98);
-	//System.out.println(x.getLetter());
 	Tile a = new Tile("A",1);
 	Tile q = new Tile("Q",10);
 	Tile s = new Tile("S",1);
