@@ -5,8 +5,16 @@ public class Action{
     ArrayList<Tile> bag;
     Player p1;
     Player p2;
+    Board gameBoard;
+    Tile[][] tileBoard;
 
     public Action(){
+	readBag("tileBag.txt");
+	makeBag();
+	p1 = new Player();
+	p2 = new Player();
+	Board b = new Board();
+	tileBoard = b.get();
     }
 
     public Tile getBag(int index){
@@ -74,8 +82,13 @@ public class Action{
 		
     }
 		    
-    //public playTile(int x, int y, Tile t){
-    //}
+    public void playTile(int x, int y, Tile t){
+	if(tileBoard[x][y] == null){
+	    tileBoard[x][y] = t;
+	}else{
+	    System.out.println("Invalid Move");
+	}
+    }
     
     public ArrayList<Tile> scramble(ArrayList<Tile> hand){
 	ArrayList<Tile> newHand = new ArrayList<Tile>();
