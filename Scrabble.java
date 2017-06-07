@@ -7,9 +7,8 @@ public class Scrabble{
     
     
     public String BestWord(Board a, Player b){
-	
+	return " ";
     }
-
     public void findSpot(Tile[][] board){
 	int posval = 0;
 	for (int r = 0; r < 15; r++){
