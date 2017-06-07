@@ -3,8 +3,6 @@ public class Scrabble{
     ArrayList<Integer> ycor = new ArrayList<Integer>();
     ArrayList<Integer> dir  = new ArrayList<Integer>();
     //1 = down, 2 = up, 3 = left, 4 = right
-
-    
     
     public String BestWord(Board a, Player b){
 	return " ";
