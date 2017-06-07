@@ -6,4 +6,5 @@ public class Player{
     ArrayList<Integer> playerScores;
     ArrayList<String> wordsPlayed;
 
+    
 }
