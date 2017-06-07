@@ -9,6 +9,22 @@ public class Scrabble{
     public String BestWord(Board a, Player b){
 	return " ";
     }
+
+    public static void clearInt(ArrayList<Integer> array){
+	while(array.size() > 0){
+	    array.remove(0);
+	}
+    }
+
+    public static void spotRanker(ArrayList<Integer> x, ArrayList<Integer> y, ArrayList<Integer> direction, Board a){
+	int[][] specspot = a.arrget();
+	Tile[][] BOARD = a.get();
+	//after rank spots, it clears the ArrayList
+	clearInt(x);
+	clearInt(y);
+	clearInt(direction);
+    }
+
     public static void findSpot(Tile[][] board){
 	int posval = 0;
 	for (int r = 0; r < 15; r++){
@@ -520,8 +536,9 @@ public class Scrabble{
 	a.set(13,14,a.get(),A);
 	System.out.println(a.tileArrayString(a.get()));
 	findSpot(a.get());
-	System.out.println(xcor.get(0));
+	spotRanker(xcor, ycor, dir, a);
+	/*	System.out.println(xcor.get(0));
 	System.out.println(ycor.get(0));
-	System.out.println(dir.get(0));
+	System.out.println(dir.get(0));*/
     }
 }
