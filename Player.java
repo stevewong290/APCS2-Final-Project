@@ -4,5 +4,5 @@ public class Player{
     int score;
     String name;
     ArrayList<Integer> playerScores;
-    ArrayList<String> wordsPlayed;x
+    ArrayList<String> wordsPlayed;
 }
