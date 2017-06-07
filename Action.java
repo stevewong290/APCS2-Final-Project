@@ -3,6 +3,8 @@ import java.io.*;
 public class Action{
     String[][] tileBag;
     ArrayList<Tile> bag;
+    Player p1;
+    Player p2;
 
     public Action(){
     }

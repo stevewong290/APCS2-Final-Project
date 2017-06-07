@@ -1,4 +1,4 @@
-public class Tile extends Action{
+public class Tile{
     String letter;
     int value;
     public Tile(String s, int v){
@@ -10,4 +10,7 @@ public class Tile extends Action{
 	return letter;
     }
 
+    public int getValue(){
+	return value;
+    }
 }
