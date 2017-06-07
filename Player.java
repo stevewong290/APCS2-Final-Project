@@ -5,4 +5,5 @@ public class Player{
     String name;
     ArrayList<Integer> playerScores;
     ArrayList<String> wordsPlayed;
+
 }
