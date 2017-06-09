@@ -11,9 +11,11 @@ void setup(){
   dict= new WordBank("words.txt");
   dict.sort(dict.allWords);
   makeLetters();
-  println(printBag());
+  //println(printBag());
   makeBoard();
-  board[0][0].placeTile(bag.get(0));
+  p1.drawTile();
+  p2.drawTile();
+  /*board[0][0].placeTile(bag.get(0));
   println(printBoard());
   println(printSpecialBoard());
   p1.drawTile();
@@ -32,7 +34,7 @@ void setup(){
   println(dict.search("EG"));
   println(dict.checkWord("EG"));
   println(dict.checkWord("ED"));
-  println(dict.checkWord("PARCHED"));
+  println(dict.checkWord("PARCHED"));*/
 }
 
 void draw(){
