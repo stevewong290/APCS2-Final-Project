@@ -3,11 +3,13 @@ Player p1 = new Player();
 Player p2 = new Player();
 ArrayList<Tile> bag = new ArrayList<Tile>();
 Cell[][] board;
-WordBank dict = new WordBank("words.txt");
+WordBank dict;
 
 
 void setup(){
   size(400,400);
+  dict= new WordBank("words.txt");
+  dict.sort(dict.allWords);
   makeLetters();
   println(printBag());
   makeBoard();
@@ -20,7 +22,7 @@ void setup(){
   println(p1.printHand());
   p1.exchange(p1.hand.get(0));
   println(p1.printHand());
-  /*println(dict.two.size());
+  println(dict.two.size());
   println(dict.two.get(0));
   println(dict.three.size());
   println(dict.seven.size());
@@ -30,7 +32,7 @@ void setup(){
   println(dict.search("EG"));
   println(dict.checkWord("EG"));
   println(dict.checkWord("ED"));
-  println(dict.checkWord("PARCHED"));*/
+  println(dict.checkWord("PARCHED"));
 }
 
 void draw(){

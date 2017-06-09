@@ -21,21 +21,21 @@ class WordBank{
     
     //
     WordBank(String filename){
-  try{
+  
       allWords = new ArrayList<String>();
-      File text = new File(filename);
+      String[] words = loadStrings(filename);
+      for(int x = 0; x < words.length; x++){
+        allWords.add(words[x]);
+      }
+   /*   File text = new File(filename);
       Scanner infile = new Scanner(text);
       while(infile.hasNextLine()){
     String line = infile.nextLine();
     allWords.add(line);
       }
-      //infile.close();
-  }
-  catch(FileNotFoundException e){
-      System.out.println("Missing File");
-
-  }
+      //infile.close();*/
     }
+    
 
     String toString(){
   int x = allWords.size() - 1;
