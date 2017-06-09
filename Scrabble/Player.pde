@@ -13,6 +13,56 @@ class Player{
   playerScores = new ArrayList<Integer>();
   wordsPlayed = new ArrayList<String>();
     }
+    
+    void drawTile(){
+      int num = 7 - (hand.size());
+      if(num == 0){
+        return;
+      }else{
+        for(int x = 0; x<num; x++){
+          int index = (int)(Math.random() * (bag.size()));
+          Tile t = bag.get(index);
+          hand.add(t);
+          bag.remove(index);
+        }
+      }
+    }
+    
+    void scramble(){
+      ArrayList<Tile> newHand = new ArrayList<Tile>();
+      for(int x = 0; x<7; x++){
+        int index = (int)(Math.random() * (hand.size()));
+        Tile t = hand.get(index);
+        newHand.add(t);
+        hand.remove(index);
+      }
+      hand = newHand;
+    }
+    
+    void exchange(Tile t){
+      int index = -1;
+      for(int x=0; x<hand.size(); x++){
+        if(hand.get(x).getLetter().equals(t.getLetter())){
+          index = x;
+          x = 8;
+          hand.remove(index);
+        }
+      }
+      bag.add(t);
+      drawTile();
+    }
+    
+    
+    String printHand(){
+      String str = "";
+      for(int x=0; x<hand.size(); x++){
+        str+=hand.get(x).getLetter()+" ";
+      }
+      return str;
+    }
+        
+      
+
 
     int getScore(){
   return score;

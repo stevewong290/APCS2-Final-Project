@@ -1,12 +1,36 @@
 import java.util.*;
-Board gameBoard= new Board();
 Player p1 = new Player();
 Player p2 = new Player();
 ArrayList<Tile> bag = new ArrayList<Tile>();
-Action a = new Action();
+Cell[][] board;
+WordBank dict = new WordBank("words.txt");
+
 
 void setup(){
-  size(1000,800);
+  size(400,400);
+  makeLetters();
+  println(printBag());
+  makeBoard();
+  board[0][0].placeTile(bag.get(0));
+  println(printBoard());
+  println(printSpecialBoard());
+  p1.drawTile();
+  println(p1.printHand());
+  p1.scramble();
+  println(p1.printHand());
+  p1.exchange(p1.hand.get(0));
+  println(p1.printHand());
+  /*println(dict.two.size());
+  println(dict.two.get(0));
+  println(dict.three.size());
+  println(dict.seven.size());
+  println(dict.eight.size());
+  println(dict.search("A"));
+  println(dict.search("ED"));
+  println(dict.search("EG"));
+  println(dict.checkWord("EG"));
+  println(dict.checkWord("ED"));
+  println(dict.checkWord("PARCHED"));*/
 }
 
 void draw(){

@@ -29,6 +29,7 @@ class WordBank{
     String line = infile.nextLine();
     allWords.add(line);
       }
+      //infile.close();
   }
   catch(FileNotFoundException e){
       System.out.println("Missing File");
