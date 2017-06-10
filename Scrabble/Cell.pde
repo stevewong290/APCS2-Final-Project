@@ -4,13 +4,17 @@ class Cell{
   int value;
   int xcor;
   int ycor;
+  int fill1;
+  int fill2;
+  int fill3;
+  boolean taken=false;
   
-  Cell(){
+  Cell(int x, int y){
     t=null;
     letter="";
     value=0;
-    xcor=0;
-    ycor=0;
+    xcor=x;
+    ycor=y;
   }
   
   void setValue(int x){
@@ -24,10 +28,40 @@ class Cell{
     return t;
   }
   
+  int getXCor(){
+    return xcor;
+  }
+  
+  int getYCor(){
+    return ycor;
+  }
+  
   void placeTile(Tile ti){
     if(t == null){
       t = ti;
     }
 }
 
+void setValue(int f1, int f2, int f3){
+  fill1=f1;
+  fill2=f2;
+  fill3=f3;
+}
+
+void display(int x, int y){
+  if(value==0){
+    fill(999);
+  }else{
+  fill(fill1,fill2,fill3);
+  }
+  rect(x,y,50,50);
+  textAlign(CENTER);
+  textSize(32);
+  fill(0);
+  if(t!=null){
+  text(t.getLetter(),x+25,y+40);
+  }else{
+    text(letter,x+25,y+40);
+}  
+}
 }

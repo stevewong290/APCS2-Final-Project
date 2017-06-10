@@ -2,7 +2,7 @@ void makeBoard(){
   board = new Cell[15][15];
   for(int r=0; r<15; r++){
     for(int c=0; c<15; c++){
-      board[r][c]=new Cell();
+      board[r][c]=new Cell(r*50,c*50);
     }
   }
   board[0][0].setValue(3);
@@ -67,6 +67,7 @@ void makeBoard(){
   board[7][14].setValue(3);
   board[6][12].setValue(5);
   
+      
 }
 
 String printBoard(){

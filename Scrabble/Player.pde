@@ -61,7 +61,15 @@ class Player{
       return str;
     }
         
-      
+    Tile getSelectedTile(){
+      for(int x=0; x<hand.size(); x++){
+        if(hand.get(x).getBool()){
+          return hand.get(x);
+        }
+      }
+      return null;
+    }
+    
 
 
     int getScore(){
