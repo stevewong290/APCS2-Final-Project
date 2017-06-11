@@ -14,7 +14,7 @@ void wordChecker(){
 
 void placeChecker(){
   if(xvals.size()>0){
-  placement=checkPlacement();
+  placement= (checkPlacement() && checkNeighbor()) ;
   }
   if(!(xvals.size() == 0) && !placement){
   fill(0);
@@ -40,6 +40,22 @@ boolean checkPlacement(){
   return goodX || goodY;
 }
 
+boolean checkNeighbor(){
+  boolean xDir = true;
+  boolean yDir = true;
+  for(int x = 0; x<xvals.size()-1;x++){
+    if(Math.abs(xvals.get(x)-xvals.get(x+1)) != 1){
+      xDir = false;
+    }
+  }
+  for(int y = 0; y<yvals.size()-1;y++){
+    if(Math.abs(yvals.get(y)-yvals.get(y+1)) != 1){
+      yDir = false;
+    }
+  }
+  return xDir || yDir;
+}
+
 //method for updating the xvals and yvals
 int findIndex(int cor, ArrayList<Integer> list){
   for(int i=0; i<list.size(); i++){
@@ -48,6 +64,18 @@ int findIndex(int cor, ArrayList<Integer> list){
     }
   }
   return -1;
+}
+
+void p1scramble(){
+  if(current.equals(p1)){
+  p1.scramble();
+  }
+}
+
+void p2scramble(){
+  if(current.equals(p2)){
+  p2.scramble();
+  }
 }
 
 void endTurn(){
@@ -74,6 +102,10 @@ void updateTurn(){
   }else{
     current = p1;
   }
+}
+
+void displayBagCount(){
+  text("Bag Count: "+bag.size(), 1050,800);
 }
 /*void updateTurn(){
   turn+=buttonVal;

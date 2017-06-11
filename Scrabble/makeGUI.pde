@@ -17,9 +17,24 @@ void makeGUI(){
     .setValue(0)
     .setVisible(false)
     ;
+    
+  p1scramble=cp5.addButton("p1scramble")
+    .setPosition(1300,50)
+    .setSize(100,50)
+    .setValue(0)
+    .setVisible(false)
+    ;
+  p2scramble=cp5.addButton("p2scramble")
+    .setPosition(1300,150)
+    .setSize(100,50)
+    .setValue(0)
+    .setVisible(false)
+    ;
 }
 
 void updateGUI(){
   checkWord.setVisible(true);
   endTurn.setVisible(true);
+  p1scramble.setVisible(true);
+  p2scramble.setVisible(true);
 }

@@ -30,7 +30,9 @@ void dragFromHToC(Player p){
          if(mouseX > 0 && mouseX < 750 &&
             mouseY > 0 && mouseY < 750){
             if(p.getHand().get(x).getBool() == true){
-               board[Math.round(mouseR)][Math.round(mouseC)].placeTile(p.getHand().get(x)); 
+               board[Math.round(mouseR)][Math.round(mouseC)].placeTile(p.getHand().get(x));
+               xvals.add(new Integer(Math.round(mouseR)));
+               yvals.add(new Integer(Math.round(mouseC)));
                p.getHand().get(x).setBool(false);
                p.getHand().remove(x);
             }
@@ -62,12 +64,18 @@ void dragFromCToOther(){
         p2.getHand().add(board[storeR][storeC].getTile());
      }
      board[storeR][storeC].removeTile();
+     xvals.remove(findIndex(storeR,xvals));
+     yvals.remove(findIndex(storeC,yvals));
      tileSelected = false;
      
    }
    else if(!mousePressed && mouseX > 0 && mouseX < 750 && mouseY > 0 && mouseY < 750 && tileSelected){
       if(mouseR != storeR || mouseC != storeC){
       board[mouseR][mouseC].placeTile(board[storeR][storeC].getTile());
+      xvals.remove(findIndex(storeR,xvals));
+      yvals.remove(findIndex(storeC,yvals));
+      xvals.add(new Integer(mouseR));
+      yvals.add(new Integer(mouseC));
       board[storeR][storeC].getTile().setBool(false);  
       board[storeR][storeC].removeTile();
       }

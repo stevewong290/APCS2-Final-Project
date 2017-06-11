@@ -30,7 +30,8 @@ class Player{
     
     void scramble(){
       ArrayList<Tile> newHand = new ArrayList<Tile>();
-      for(int x = 0; x<7; x++){
+      int s = hand.size();
+      for(int x = 0; x<s; x++){
         int index = (int)(Math.random() * (hand.size()));
         Tile t = hand.get(index);
         newHand.add(t);

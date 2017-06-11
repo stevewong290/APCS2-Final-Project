@@ -21,6 +21,8 @@ PFont f;
 ControlP5 cp5;
 Textfield checkWord;
 String textValue = "";
+Button p1scramble;
+Button p2scramble;
 Button endTurn;
 PImage startImg;
 int screen = 0;
@@ -80,7 +82,7 @@ void draw(){
     //display start screen
     image(startImg, 0, 0, startImg.width * (1.125), startImg.height);
     textSize(50);
-    text("Double Click Anywhere to Start!", 300,800);
+    text("Click Anywhere to Start!", 300,800);
     if(mousePressed){
       screen=1;
       updateGUI();
@@ -101,6 +103,7 @@ void draw(){
   wordChecker();
   placeChecker();
   displayTurn();
+  displayBagCount();
   }
   //updateTurn();
   
