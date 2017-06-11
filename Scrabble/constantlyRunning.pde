@@ -88,6 +88,15 @@ void displayTurn(){
 }
 
 void updateTurn(){
+  for(int r = 0; r < 15; r++){
+    for(int c = 0; c < 15; c++){
+       if(board[r][c].getTile() != null){
+          if(board[r][c].getTile().getLocked() == false){
+             board[r][c].getTile().setLocked(true);
+          }
+       }
+    }
+  }
   turn++;
   //test later
   xvals.clear();

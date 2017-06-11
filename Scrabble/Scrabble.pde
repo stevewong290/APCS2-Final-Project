@@ -35,6 +35,7 @@ int mouseC = mouseY / 50;
 int dragDecider;
 boolean tileSelected;
 boolean superiorTileSelected;
+boolean lockedstuff;
 
 
  
@@ -82,7 +83,7 @@ void draw(){
     //display start screen
     image(startImg, 0, 0, startImg.width * (1.125), startImg.height);
     textSize(50);
-    text("Click Anywhere to Start!", 300,800);
+    text("Click Here to Start!", 300,800);
     if(mousePressed){
       screen=1;
       updateGUI();

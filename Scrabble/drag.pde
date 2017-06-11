@@ -42,16 +42,19 @@ void dragFromHToC(Player p){
 }
 void dragFromCToOther(){
    if(mousePressed && mouseX > 0 && mouseX < 750 && mouseY > 0 && mouseY < 750){
-      println("hi");
-      if(board[mouseR][mouseC].getTile() != null){
-         // println(board[r][c]);
-       board[mouseR][mouseC].getTile().setBool(true);
-       tileSelected = true;
-       board[mouseR][mouseC].getTile().setXYCor(mouseX, mouseY);
-       storeR = mouseR;
-       storeC = mouseC;
-       board[storeR][storeC].getTile().display(mouseX,mouseY);
-    }
+      //println("hi");
+   //   if(board[mouseR][mouseC].getTile().getLocked() == false){
+        if(board[mouseR][mouseC].getTile() != null){
+           // println(board[r][c]);
+         board[mouseR][mouseC].getTile().setBool(true);
+         tileSelected = true;
+        // lockedstuff = true;
+         board[mouseR][mouseC].getTile().setXYCor(mouseX, mouseY);
+         storeR = mouseR;
+         storeC = mouseC;
+         board[storeR][storeC].getTile().display(mouseX,mouseY);
+      }
+//     }
    }
     else if(!mousePressed && (mouseX > 750 || mouseY > 750) && tileSelected){
      println("bye");
