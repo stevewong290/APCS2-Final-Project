@@ -8,13 +8,13 @@ class Cell{
   int fill2;
   int fill3;
   boolean taken=false;
-  
-  Cell(int x, int y){
+  //may cause further problems
+  Cell(int r, int c){
     t=null;
     letter="";
     value=0;
-    xcor=x;
-    ycor=y;
+    xcor=r;
+    ycor=c;
   }
   
   void setValue(int x){
@@ -46,7 +46,7 @@ class Cell{
     t = null;
   }
 
-void setValue(int f1, int f2, int f3){
+void setColorValue(int f1, int f2, int f3){
   fill1=f1;
   fill2=f2;
   fill3=f3;
@@ -58,7 +58,7 @@ void display(int x, int y){
   }else{
   fill(fill1,fill2,fill3);
   }
-  rect(x,y,50,50);
+  rect(y,x,50,50);
   textAlign(CENTER);
   textSize(32);
   fill(0);

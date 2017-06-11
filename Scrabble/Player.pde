@@ -6,8 +6,8 @@ class Player{
     ArrayList<Integer> playerScores;
     ArrayList<String> wordsPlayed;
 
-    Player(){
-  name = "";
+    Player(String pname){
+  name = pname;
   score = 0;
   hand = new ArrayList<Tile>();
   playerScores = new ArrayList<Integer>();
@@ -99,5 +99,8 @@ class Player{
     void setName(String n){
   name = n;
     }
+   String getName(){
+     return name;
+   }
     
 }

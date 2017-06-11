@@ -49,3 +49,37 @@ int findIndex(int cor, ArrayList<Integer> list){
   }
   return -1;
 }
+
+void endTurn(){
+  updateTurn();
+}
+
+void displayTurn(){
+  text("Turn: "+turn, 800, 800);
+  text(current.getName(), 800, 825);
+}
+
+void updateTurn(){
+  turn++;
+  //test later
+  xvals.clear();
+  yvals.clear();
+  if(current.getName().equals("Player 1")){
+    p1.drawTile();
+  }else{
+    p2.drawTile();
+  }
+  if(turn%2 == 0){
+    current = p2;
+  }else{
+    current = p1;
+  }
+}
+/*void updateTurn(){
+  turn+=buttonVal;
+  println("Button pressed.");
+  fill(0);
+  text(turn,800,800);
+  
+}*/
+  

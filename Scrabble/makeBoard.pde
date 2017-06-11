@@ -54,7 +54,7 @@ void makeBoard(){
   board[11][0].setValue(5);
   board[14][3].setValue(5);
   board[14][7].setValue(3);
-  board[14][10].setValue(5);
+  board[14][11].setValue(5);
   board[13][5].setValue(6);
   board[12][6].setValue(5);
   board[11][7].setValue(5);
@@ -66,6 +66,7 @@ void makeBoard(){
   board[7][11].setValue(5);
   board[7][14].setValue(3);
   board[6][12].setValue(5);
+  //board[3][4].setValue(5);
   
       
 }
@@ -78,19 +79,19 @@ void drawBoard(){
     int val=board[r][c].getValue();
     if(val==2){
       if(board[r][c].getXCor()/50==7 && board[r][c].getYCor()/50==7){
-        board[r][c].setValue(245,193,223);
+        board[r][c].setColorValue(245,193,223);
       }else{
-      board[r][c].setValue(193,245,217);
+      board[r][c].setColorValue(193,245,217);
     }
     }
     if(val==3){
-      board[r][c].setValue(252,92,92);
+      board[r][c].setColorValue(252,92,92);
     }
     if(val==5){
-      board[r][c].setValue(184,221,250);
+      board[r][c].setColorValue(184,221,250);
     }
     if(val==6){
-      board[r][c].setValue(106,121,250);
+      board[r][c].setColorValue(106,121,250);
     }
       }
       board[r][c].display(board[r][c].getXCor(), board[r][c].getYCor());
@@ -102,8 +103,8 @@ void displayHands(){
   textSize(32);
   fill(0);  
   text("TEST",900,700);
-  text("SteveEEEE", 900,50);
-  text("Stephanie",900,150);
+  text(p1.getName(), 900,50);
+  text(p2.getName(),900,150);
   for(int x=0; x<7; x++){
     p1.getHand().get(x).display(900+(55*x),100);
     
