@@ -42,6 +42,10 @@ class Cell{
     }
 }
 
+  void removeTile(){
+    t = null;
+  }
+
 void setValue(int f1, int f2, int f3){
   fill1=f1;
   fill2=f2;

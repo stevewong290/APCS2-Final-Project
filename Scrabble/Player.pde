@@ -76,6 +76,10 @@ class Player{
   return score;
     }
 
+    void putBack(Tile a){
+      hand.add(a);
+    }
+
     ArrayList<Tile> getHand(){
   return hand;
     }

@@ -13,7 +13,8 @@ Textfield checkWord;
 String textValue = "";
 String wordCheck;
 boolean placement;
-
+int storeR;
+int storeC;
 
  
 
@@ -66,6 +67,17 @@ void draw(){
   displayHands();
   dragging(p2);
   dragTile(p2.getHand());
+  if(mousePressed){
+  backDragTile();
+  }
+  else{
+   
+    if(mouseX >= 0 && mouseX <= 750 &&
+       mouseY >= 0 && mouseY <= 750){
+       board[Math.round(mouseX) / 50][Math.round(mouseY) / 50].placeTile(board[storeR][storeC].getTile());
+       }
+     board[storeR][storeC].removeTile();
+  }
   wordCheck=checkWord.getText().toUpperCase();
   //println(dict.search(wordCheck));
   fill(0);
@@ -87,8 +99,9 @@ void draw(){
   textAlign(CENTER);
   fill(0,102,153);  
   text("TEST",500,500);*/
-
-  
+  /*for(int x = 0; x < bag.size();x++){
+    println(bag.get(x).getLetter());
+}*/
 }
 
 void drawBoard(){
@@ -134,10 +147,24 @@ void dragging(Player p){
        (Math.round(mouseY)+35 < p.getHand().get(x).getYCor() + 50)){
            p.getHand().get(x).setBool(true);
          //  dragTile(p.getHand());
-         }
+       }
+       if(mouseX > 0 && mouseX < 750 &&
+          mouseY > 0 && mouseY < 750 &&
+          (board[Math.round(mouseX) / 50][Math.round(mouseY) / 50].getTile() != null)){
+              println(Math.round(mouseX) / 50);
+              println(mouseX);
+              board[Math.round(mouseX) / 50][Math.round(mouseY) / 50].getTile().setBool(true);
+          }
+           // println(board[0][0]);
        }
        else{
-      if(p.getSelectedTile() != null){
+        /* for(int r = 0; r < 15; r++){
+           for(int c = 0; c < 15; c++){
+             if(
+           }
+           
+         }*/
+        if(p.getSelectedTile() != null){
           if(mouseX >= 0 && mouseX <= 750 &&
              mouseY >= 0 && mouseY <= 750){
                board[Math.round(mouseX) / 50][Math.round(mouseY) / 50].placeTile(p.getSelectedTile());
@@ -172,7 +199,7 @@ void dragging(Player p){
       }
             
     }
-    }
+}
 
 
 void dragTile(ArrayList<Tile> a){
@@ -181,6 +208,25 @@ void dragTile(ArrayList<Tile> a){
       a.get(x).setXYCor(mouseX - 25, mouseY - 25); 
      }
      a.get(x).display(a.get(x).getXCor(), a.get(x).getYCor());
+   }
+   //println(board[7][7].getTile());
+   
+}
+
+void backDragTile(){
+  for(int r = 0; r < 15; r++){
+     for(int c = 0; c < 15; c++){
+       if(board[r][c].getTile() != null
+       && board[r][c].getTile().getBool() == true){
+          storeR = r;
+          storeC = c;
+           //  println(board[r][c].getTile());
+             board[r][c].getTile().setXYCor(mouseX - 25, mouseY - 25);
+             board[r][c].getTile().display(mouseX, mouseY);
+         //     board[r][c].removeTile();
+          
+       }
+     }
    }
 }
 
