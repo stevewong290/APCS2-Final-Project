@@ -10,6 +10,14 @@ class Tile{
   value = v;
     }
     
+    boolean getLocked(){
+      return locked;
+    }
+    
+    void setLocked(boolean b){
+      locked=b;
+    }
+    
     int getXCor(){
       return xcor;
     }

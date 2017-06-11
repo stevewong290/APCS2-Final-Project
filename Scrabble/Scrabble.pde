@@ -2,13 +2,17 @@ import java.util.*;
 import controlP5.*;
 Player p1 = new Player();
 Player p2 = new Player();
+ArrayList<Integer> xvals = new ArrayList<Integer>();
+ArrayList<Integer> yvals = new ArrayList<Integer>();
 ArrayList<Tile> bag = new ArrayList<Tile>();
 Cell[][] board;
 WordBank dict;
 PFont f;
 ControlP5 cp5;
-
+Textfield checkWord;
 String textValue = "";
+String wordCheck;
+boolean placement;
 
 
  
@@ -47,7 +51,7 @@ void setup(){
   
   cp5 = new ControlP5(this);
   fill(999);
-  cp5.addTextfield("input")
+  checkWord=cp5.addTextfield("input")
      .setPosition(1200,600)
      .setSize(200,40)
      .setFont(font)
@@ -62,7 +66,22 @@ void draw(){
   displayHands();
   dragging(p2);
   dragTile(p2.getHand());
-  
+  wordCheck=checkWord.getText().toUpperCase();
+  //println(dict.search(wordCheck));
+  fill(0);
+  //text(wordCheck,850,850);
+  if(dict.search(wordCheck)){
+    text(wordCheck+" is a word.",950,850);
+  }else{
+    if(wordCheck.length()>0){
+      text(wordCheck+" is not a word.",950,850);
+    }
+  }
+    
+  if(!(xvals.size() == 0) && !placement){
+                 fill(0);
+                 text("INVALID PLACEMENT", 250,850);
+               }
   /*fill();
   textFont(f,16);
   textAlign(CENTER);
@@ -102,12 +121,12 @@ void drawBoard(){
 void dragging(Player p){
     for(int x = 0; x < p.getHand().size(); x++){
        if(mousePressed){ 
-         println(mouseX + 25);
-         println(mouseY + 35);
-         println(p.getHand().get(x).getXCor());
-         println(p.getHand().get(x).getXCor() + 55);
-         println(p.getHand().get(x).getYCor());
-         println(p.getHand().get(x).getYCor() + 50);
+         //println(mouseX + 25);
+         //println(mouseY + 35);
+         //println(p.getHand().get(x).getXCor());
+         //println(p.getHand().get(x).getXCor() + 55);
+         //println(p.getHand().get(x).getYCor());
+         //println(p.getHand().get(x).getYCor() + 50);
          if( 
        (Math.round(mouseX)+25 > p.getHand().get(x).getXCor()) && 
        (Math.round(mouseX)+25 < p.getHand().get(x).getXCor() + 55) &&
@@ -122,6 +141,14 @@ void dragging(Player p){
           if(mouseX >= 0 && mouseX <= 750 &&
              mouseY >= 0 && mouseY <= 750){
                board[Math.round(mouseX) / 50][Math.round(mouseY) / 50].placeTile(p.getSelectedTile());
+               xvals.add(new Integer(Math.round(mouseX)/50));
+               yvals.add(new Integer(Math.round(mouseY)/50));
+               placement=checkPlacement();
+               println(placement);
+               /*if(!placement){
+                 fill(0);
+                 text("INVALID PLACEMENT", 100,850);
+               }*/
              //  println(p.getSelectedTile());
        //   p.getHand().remove(g);
           if(p.getHand().size() > 1){
@@ -172,3 +199,22 @@ void displayHands(){
   }
     
 }
+
+boolean checkPlacement(){
+  boolean goodX = true;
+  boolean goodY = true;
+  int xval = xvals.get(0);
+  int yval = yvals.get(0);
+  for(int x = 0; x<xvals.size(); x++){
+    if(xvals.get(x)!=xval){
+       goodX = false;
+    }
+  }
+  for(int y =0; y<yvals.size(); y++){
+    if(yvals.get(y)!=yval){
+      goodY = false;
+    }
+  }
+  return goodX || goodY;
+}
+    
