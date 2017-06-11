@@ -67,17 +67,7 @@ void draw(){
   displayHands();
   dragging(p2);
   dragTile(p2.getHand());
-  if(mousePressed){
-  backDragTile();
-  }
-  else{
-   
-    if(mouseX >= 0 && mouseX <= 750 &&
-       mouseY >= 0 && mouseY <= 750){
-       board[Math.round(mouseX) / 50][Math.round(mouseY) / 50].placeTile(board[storeR][storeC].getTile());
-       }
-     board[storeR][storeC].removeTile();
-  }
+  cellToCell();
   wordCheck=checkWord.getText().toUpperCase();
   //println(dict.search(wordCheck));
   fill(0);
@@ -246,6 +236,19 @@ void displayHands(){
     
 }
 
+void cellToCell(){
+  if(mousePressed){
+  backDragTile();
+  }
+  else{
+   
+    if(mouseX >= 0 && mouseX <= 750 &&
+       mouseY >= 0 && mouseY <= 750){
+       board[Math.round(mouseX) / 50][Math.round(mouseY) / 50].placeTile(board[storeR][storeC].getTile());
+       }
+     board[storeR][storeC].removeTile();
+  }
+}
 boolean checkPlacement(){
   boolean goodX = true;
   boolean goodY = true;
@@ -263,4 +266,12 @@ boolean checkPlacement(){
   }
   return goodX || goodY;
 }
-    
+
+int findIndex(int cor, ArrayList<Integer> list){
+  for(int i=0; i<list.size(); i++){
+    if(list.get(i).intValue() == cor){
+      return i;
+    }
+  }
+  return -1;
+}
