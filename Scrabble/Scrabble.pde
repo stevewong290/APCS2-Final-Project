@@ -15,6 +15,7 @@ String wordCheck;
 boolean placement;
 int storeR;
 int storeC;
+int dragDecider;
 
  
 
@@ -65,9 +66,19 @@ void draw(){
   background(255);
   drawBoard();
   displayHands();
+/*  if(mousePressed && mouseX > 0 && mouseX < 750 && mouseY > 0 && mouseY < 750){
+    dragDecider = 1;
+  }
+  if(mousePressed && mouseX > 900 && mouseX < 1285 && ((mouseY > 100 && mouseY < 150) || (mouseY > 200 && mouseY < 250))){
+     dragDecider = 0; 
+  }*/
+  println(dragDecider);
+  if(dragDecider != 1){
   dragging(p2);
   dragTile(p2.getHand());
+  }else{
   cellToCell();
+  }
   wordCheck=checkWord.getText().toUpperCase();
   //println(dict.search(wordCheck));
   fill(0);
@@ -135,14 +146,15 @@ void dragging(Player p){
        (Math.round(mouseX)+25 < p.getHand().get(x).getXCor() + 55) &&
        (Math.round(mouseY)+35 > p.getHand().get(x).getYCor()) &&
        (Math.round(mouseY)+35 < p.getHand().get(x).getYCor() + 50)){
+      //   dragDecider = 1;
            p.getHand().get(x).setBool(true);
          //  dragTile(p.getHand());
        }
        if(mouseX > 0 && mouseX < 750 &&
           mouseY > 0 && mouseY < 750 &&
           (board[Math.round(mouseX) / 50][Math.round(mouseY) / 50].getTile() != null)){
-              println(Math.round(mouseX) / 50);
-              println(mouseX);
+           //   println(Math.round(mouseX) / 50);
+        //      println(mouseX);
               board[Math.round(mouseX) / 50][Math.round(mouseY) / 50].getTile().setBool(true);
           }
            // println(board[0][0]);
@@ -158,10 +170,14 @@ void dragging(Player p){
           if(mouseX >= 0 && mouseX <= 750 &&
              mouseY >= 0 && mouseY <= 750){
                board[Math.round(mouseX) / 50][Math.round(mouseY) / 50].placeTile(p.getSelectedTile());
+             //  p.getSelectedTile().setBool(false);
+             //  storeR = Math.round(mouseX) / 50;
+             //  storeC = Math.round(mouseY) / 50;
+               dragDecider = 1;
                xvals.add(new Integer(Math.round(mouseX)/50));
                yvals.add(new Integer(Math.round(mouseY)/50));
                placement=checkPlacement();
-               println(placement);
+               //println(placement);
                /*if(!placement){
                  fill(0);
                  text("INVALID PLACEMENT", 100,850);
@@ -173,7 +189,7 @@ void dragging(Player p){
             if(p.getHand().get(g).getBool() == true){
               p.getHand().remove(g);
             }
-            p.getHand().get(g).setBool(false);
+          //  p.getHand().get(g).setBool(false);
           }
           }
           else{
@@ -211,13 +227,14 @@ void backDragTile(){
           storeR = r;
           storeC = c;
            //  println(board[r][c].getTile());
-             board[r][c].getTile().setXYCor(mouseX - 25, mouseY - 25);
-             board[r][c].getTile().display(mouseX, mouseY);
+           //  board[r][c].getTile().setXYCor(mouseX - 25, mouseY - 25);
+            
          //     board[r][c].removeTile();
           
        }
      }
    }
+   board[storeR][storeC].getTile().display(mouseX, mouseY);
 }
 
 void displayHands(){
@@ -237,16 +254,26 @@ void displayHands(){
 }
 
 void cellToCell(){
-  if(mousePressed){
-  backDragTile();
+  if(mousePressed && mouseX > 0 && mouseX < 750 && mouseY > 0 && mouseY < 750){
+    backDragTile();
   }
+  if(mousePressed && mouseX > 900 && mouseX < 1285 && ((mouseY > 100 && mouseY < 150) || (mouseY > 200 && mouseY < 250))){
+     dragDecider = 0; 
+  }
+  
   else{
    
     if(mouseX >= 0 && mouseX <= 750 &&
-       mouseY >= 0 && mouseY <= 750){
+       mouseY >= 0 && mouseY <= 750 &&
+       storeR > 0 && storeC > 0){
        board[Math.round(mouseX) / 50][Math.round(mouseY) / 50].placeTile(board[storeR][storeC].getTile());
-       }
+       
      board[storeR][storeC].removeTile();
+     storeR = Math.round(mouseX) / 50;
+     storeC = Math.round(mouseY) / 50;
+     
+       }
+     
   }
 }
 boolean checkPlacement(){
