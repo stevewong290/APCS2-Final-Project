@@ -26,16 +26,7 @@ class Tile{
     }
     void setBool(boolean b){
       selected=b;
-    }
-    boolean mouseDragged(){
-      return true;
-    }
-    
-    boolean mouseReleased(){
-      return true;
-    }
-    
-    
+    }    
     
     boolean getBool(){
       return selected;

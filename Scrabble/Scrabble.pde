@@ -28,8 +28,12 @@ int screen = 0;
 //Steve's Drag stuff
 int storeR;
 int storeC;
+int mouseR = mouseX / 50;
+int mouseC = mouseY / 50;
 int dragDecider;
-// 0 use HC, 1 use CC, 2 use CH
+boolean tileSelected;
+boolean superiorTileSelected;
+
 
  
 
@@ -70,6 +74,8 @@ void setup(){
 }
 
 void draw(){
+  mouseR = mouseX / 50;
+  mouseC = mouseY / 50;
   if(screen == 0){
     //display start screen
     image(startImg, 0, 0, startImg.width * (1.125), startImg.height);
@@ -80,12 +86,14 @@ void draw(){
       updateGUI();
     }
   }
-  if(dragDecider == 0){
-     dragFromHToC(current);
-  }
+ 
+  dragFromHToC(current);
+  dragFromCToOther();
+ // dragFromCToH();
 /*  if(dragDecider == 1){
      dragFromCToC();
   }*/
+  
   if(screen == 1){
   background(255);
   drawBoard();
@@ -100,10 +108,3 @@ void draw(){
   
 
 }
-
-
-
-
-
-    
-  

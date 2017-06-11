@@ -1,14 +1,13 @@
-import java.util.*;
 
 void dragFromHToC(Player p){
   for(int x = 0; x < p.getHand().size(); x++){
      if(mousePressed){
-        println(mouseX);
+    /*    println(mouseX);
         println(mouseY);
         println(p.getHand().get(x).getXCor());
         println(p.getHand().get(x).getXCor() + 55);
         println(p.getHand().get(x).getYCor());
-        println(p.getHand().get(x).getYCor() + 50);
+        println(p.getHand().get(x).getYCor() + 50); */
         if(
         (Math.round(mouseX)+25 > p.getHand().get(x).getXCor()) && 
         (Math.round(mouseX)+25 < p.getHand().get(x).getXCor() + 55) &&
@@ -19,19 +18,19 @@ void dragFromHToC(Player p){
         if(p.getHand().get(x).getBool() == true){
            p.getHand().get(x).setXYCor(mouseX, mouseY);
         }
-  //      p.getHand().get(x).display(mouseX, mouseY);
-        println(mouseX);
+        p.getHand().get(x).display(mouseX, mouseY);
+     /*   println(mouseX);
         println(mouseY);
         println(p.getHand().get(x).getXCor());
         println(p.getHand().get(x).getXCor() + 55);
         println(p.getHand().get(x).getYCor());
-        println(p.getHand().get(x).getYCor() + 50);
+        println(p.getHand().get(x).getYCor() + 50);*/
       }
       else{
          if(mouseX > 0 && mouseX < 750 &&
             mouseY > 0 && mouseY < 750){
             if(p.getHand().get(x).getBool() == true){
-               board[Math.round(mouseX / 50)][Math.round(mouseY / 50)].placeTile(p.getHand().get(x)); 
+               board[Math.round(mouseR)][Math.round(mouseC)].placeTile(p.getHand().get(x)); 
                p.getHand().get(x).setBool(false);
                p.getHand().remove(x);
             }
@@ -39,23 +38,75 @@ void dragFromHToC(Player p){
       }
    }
 }
-/*void dragFromCToOther(){
+void dragFromCToOther(){
    if(mousePressed && mouseX > 0 && mouseX < 750 && mouseY > 0 && mouseY < 750){
-      for(int r = 0; r < 15; r++){
-         for(int c = 0; c < 15; c++){
-            if(board[r][c] != null){
-               board[r][c].getTile().setBool(true);
-               board[r][c].getTile().setXYCor(mouseX, mouseY);
-               storeR = r;
-               storeC = c;
-            }
-         }
+      println("hi");
+      if(board[mouseR][mouseC].getTile() != null){
+         // println(board[r][c]);
+       board[mouseR][mouseC].getTile().setBool(true);
+       tileSelected = true;
+       board[mouseR][mouseC].getTile().setXYCor(mouseX, mouseY);
+       storeR = mouseR;
+       storeC = mouseC;
+       board[storeR][storeC].getTile().display(mouseX,mouseY);
+    }
+   }
+    else if(!mousePressed && (mouseX > 750 || mouseY > 750) && tileSelected){
+     println("bye");
+     board[storeR][storeC].getTile().setBool(false);
+     if(turn % 2 == 1){
+        p1.getHand().add(board[storeR][storeC].getTile());
+        
+     }
+     else{
+        p2.getHand().add(board[storeR][storeC].getTile());
+     }
+     board[storeR][storeC].removeTile();
+     tileSelected = false;
+     
+   }
+   else if(!mousePressed && mouseX > 0 && mouseX < 750 && mouseY > 0 && mouseY < 750 && tileSelected){
+      if(mouseR != storeR || mouseC != storeC){
+      board[mouseR][mouseC].placeTile(board[storeR][storeC].getTile());
+      board[storeR][storeC].getTile().setBool(false);  
+      board[storeR][storeC].removeTile();
       }
-   board[storeR][storeC].getTile().display(mouseX,mouseY);
+      tileSelected = false;
+   }
+   else if(!mousePressed){
+     tileSelected = false;
    }
 }
 
 
+/*void dragFromCToH(){
+   if(mousePressed && mouseX > 0 && mouseX < 750 && mouseY > 0 && mouseY < 750){
+       superiorTileSelected = true;
+       if(board[mouseR][mouseC].getTile() != null){
+         board[mouseR][mouseC].getTile().setBool(true);
+         board[mouseR][mouseC].getTile().setXYCor(mouseX, mouseY);
+         storeR = mouseR;
+         storeC = mouseC;
+         board[storeR][storeC].getTile().display(mouseX,mouseY);
+   }  
+   else if(!mousePressed && (mouseX > 750 || mouseY > 750) && tileSelected){
+     if(turn % 2 == 1){
+        p1.getHand().add(board[storeR][storeC].getTile());
+        
+     }
+     else{
+        p2.getHand().add(board[storeR][storeC].getTile());
+     }
+     board[storeR][storeC].removeTile();
+     tileSelected = false;
+     
+   }
+     else{
+        tileSelected = false; 
+     }
+   }
+}*/
+//mouseX > 900 && mouseX < 1285 && (playa 1(mouseY > 100 && mouseY < 150) || playa 2(mouseY > 200 && mouseY < 250)))
 void displayDrag(ArrayList<Tile> a){
    for(int x = 0; x < a.size(); x++){
       if(a.get(x).getBool()){
@@ -64,7 +115,7 @@ void displayDrag(ArrayList<Tile> a){
       a.get(x).display(a.get(x).getXCor(), a.get(x).getYCor());
    }
 }
-
+/*
 void decider(Player p){
    if(mousePressed){
       if(
@@ -79,5 +130,4 @@ void decider(Player p){
       }
    }   
 }
-
 */
