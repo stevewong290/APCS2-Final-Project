@@ -70,6 +70,50 @@ void makeBoard(){
       
 }
 
+void drawBoard(){
+  for(int r=0;r<15;r++){
+    for(int c=0; c<15; c++){
+      fill(999);
+      if(board[r][c].getValue() != 0){
+    int val=board[r][c].getValue();
+    if(val==2){
+      if(board[r][c].getXCor()/50==7 && board[r][c].getYCor()/50==7){
+        board[r][c].setValue(245,193,223);
+      }else{
+      board[r][c].setValue(193,245,217);
+    }
+    }
+    if(val==3){
+      board[r][c].setValue(252,92,92);
+    }
+    if(val==5){
+      board[r][c].setValue(184,221,250);
+    }
+    if(val==6){
+      board[r][c].setValue(106,121,250);
+    }
+      }
+      board[r][c].display(board[r][c].getXCor(), board[r][c].getYCor());
+    }
+  }
+}
+
+void displayHands(){
+  textSize(32);
+  fill(0);  
+  text("TEST",900,700);
+  text("SteveEEEE", 900,50);
+  text("Stephanie",900,150);
+  for(int x=0; x<7; x++){
+    p1.getHand().get(x).display(900+(55*x),100);
+    
+  }
+  for(int x=0; x<p2.getHand().size(); x++){
+    p2.getHand().get(x).display(900+(55*x),200);
+  }
+    
+}
+
 String printBoard(){
   String str="";
   for(int r=0; r<15; r++){

@@ -1,18 +1,26 @@
 import java.util.*;
 import controlP5.*;
+
+//variables of actual game
 Player p1 = new Player();
 Player p2 = new Player();
-ArrayList<Integer> xvals = new ArrayList<Integer>();
-ArrayList<Integer> yvals = new ArrayList<Integer>();
 ArrayList<Tile> bag = new ArrayList<Tile>();
 Cell[][] board;
 WordBank dict;
+
+//variables for checking placement of word
+ArrayList<Integer> xvals = new ArrayList<Integer>();
+ArrayList<Integer> yvals = new ArrayList<Integer>();
+String wordCheck;
+boolean placement;
+
+//GUI Stuff
 PFont f;
 ControlP5 cp5;
 Textfield checkWord;
 String textValue = "";
-String wordCheck;
-boolean placement;
+
+//Steve's Drag stuff
 int storeR;
 int storeC;
 int dragDecider;
@@ -21,13 +29,13 @@ int dragDecider;
 
 void setup(){
   size(1500,1000);
-  dict= new WordBank("words.txt");
-  dict.sort(dict.allWords);
+  makeDict();
   makeLetters();
-  //println(printBag());
   makeBoard();
+  makeGUI();
   p1.drawTile();
   p2.drawTile();
+  //println(printBag());
   /*board[0][0].placeTile(bag.get(0));
   println(printBoard());
   println(printSpecialBoard());
@@ -49,16 +57,7 @@ void setup(){
   println(dict.checkWord("ED"));
   println(dict.checkWord("PARCHED"));*/
  // f = createFont("Arial",16,true);
-   PFont font = createFont("arial",20);
-  
-  cp5 = new ControlP5(this);
-  fill(999);
-  checkWord=cp5.addTextfield("input")
-     .setPosition(1200,600)
-     .setSize(200,40)
-     .setFont(font)
-     .setFocus(true)
-     ;
+   
    
 }
 
@@ -66,6 +65,11 @@ void draw(){
   background(255);
   drawBoard();
   displayHands();
+  wordChecker();
+  placeChecker();
+  
+  
+  
 /*  if(mousePressed && mouseX > 0 && mouseX < 750 && mouseY > 0 && mouseY < 750){
     dragDecider = 1;
   }
@@ -79,22 +83,6 @@ void draw(){
   }else{
   cellToCell();
   }
-  wordCheck=checkWord.getText().toUpperCase();
-  //println(dict.search(wordCheck));
-  fill(0);
-  //text(wordCheck,850,850);
-  if(dict.search(wordCheck)){
-    text(wordCheck+" is a word.",950,850);
-  }else{
-    if(wordCheck.length()>0){
-      text(wordCheck+" is not a word.",950,850);
-    }
-  }
-    
-  if(!(xvals.size() == 0) && !placement){
-                 fill(0);
-                 text("INVALID PLACEMENT", 250,850);
-               }
   /*fill();
   textFont(f,16);
   textAlign(CENTER);
@@ -105,33 +93,7 @@ void draw(){
 }*/
 }
 
-void drawBoard(){
-  for(int r=0;r<15;r++){
-    for(int c=0; c<15; c++){
-      fill(999);
-      if(board[r][c].getValue() != 0){
-    int val=board[r][c].getValue();
-    if(val==2){
-      if(board[r][c].getXCor()/50==7 && board[r][c].getYCor()/50==7){
-        board[r][c].setValue(245,193,223);
-      }else{
-      board[r][c].setValue(193,245,217);
-    }
-    }
-    if(val==3){
-      board[r][c].setValue(252,92,92);
-    }
-    if(val==5){
-      board[r][c].setValue(184,221,250);
-    }
-    if(val==6){
-      board[r][c].setValue(106,121,250);
-    }
-      }
-      board[r][c].display(board[r][c].getXCor(), board[r][c].getYCor());
-    }
-  }
-}
+
 void dragging(Player p){
     for(int x = 0; x < p.getHand().size(); x++){
        if(mousePressed){ 
@@ -176,12 +138,7 @@ void dragging(Player p){
                dragDecider = 1;
                xvals.add(new Integer(Math.round(mouseX)/50));
                yvals.add(new Integer(Math.round(mouseY)/50));
-               placement=checkPlacement();
-               //println(placement);
-               /*if(!placement){
-                 fill(0);
-                 text("INVALID PLACEMENT", 100,850);
-               }*/
+               
              //  println(p.getSelectedTile());
        //   p.getHand().remove(g);
           if(p.getHand().size() > 1){
@@ -237,21 +194,6 @@ void backDragTile(){
    board[storeR][storeC].getTile().display(mouseX, mouseY);
 }
 
-void displayHands(){
-  textSize(32);
-  fill(0);  
-  text("TEST",900,700);
-  text("SteveEEEE", 900,50);
-  text("Stephanie",900,150);
-  for(int x=0; x<7; x++){
-    p1.getHand().get(x).display(900+(55*x),100);
-    
-  }
-  for(int x=0; x<p2.getHand().size(); x++){
-    p2.getHand().get(x).display(900+(55*x),200);
-  }
-    
-}
 
 void cellToCell(){
   if(mousePressed && mouseX > 0 && mouseX < 750 && mouseY > 0 && mouseY < 750){
@@ -276,29 +218,7 @@ void cellToCell(){
      
   }
 }
-boolean checkPlacement(){
-  boolean goodX = true;
-  boolean goodY = true;
-  int xval = xvals.get(0);
-  int yval = yvals.get(0);
-  for(int x = 0; x<xvals.size(); x++){
-    if(xvals.get(x)!=xval){
-       goodX = false;
-    }
-  }
-  for(int y =0; y<yvals.size(); y++){
-    if(yvals.get(y)!=yval){
-      goodY = false;
-    }
-  }
-  return goodX || goodY;
-}
 
-int findIndex(int cor, ArrayList<Integer> list){
-  for(int i=0; i<list.size(); i++){
-    if(list.get(i).intValue() == cor){
-      return i;
-    }
-  }
-  return -1;
-}
+
+    
+  
