@@ -1,11 +1,17 @@
 import java.util.*;
+import controlP5.*;
 Player p1 = new Player();
 Player p2 = new Player();
 ArrayList<Tile> bag = new ArrayList<Tile>();
 Cell[][] board;
 WordBank dict;
 PFont f;
+ControlP5 cp5;
 
+String textValue = "";
+
+
+ 
 
 void setup(){
   size(1500,1000);
@@ -36,7 +42,18 @@ void setup(){
   println(dict.checkWord("EG"));
   println(dict.checkWord("ED"));
   println(dict.checkWord("PARCHED"));*/
-  f = createFont("Arial",16,true);
+ // f = createFont("Arial",16,true);
+   PFont font = createFont("arial",20);
+  
+  cp5 = new ControlP5(this);
+  fill(999);
+  cp5.addTextfield("input")
+     .setPosition(1200,600)
+     .setSize(200,40)
+     .setFont(font)
+     .setFocus(true)
+     ;
+   
 }
 
 void draw(){
@@ -44,6 +61,7 @@ void draw(){
   drawBoard();
   displayHands();
   dragging(p2);
+  dragTile(p2.getHand());
   
   /*fill();
   textFont(f,16);
@@ -96,7 +114,7 @@ void dragging(Player p){
        (Math.round(mouseY)+35 > p.getHand().get(x).getYCor()) &&
        (Math.round(mouseY)+35 < p.getHand().get(x).getYCor() + 50)){
            p.getHand().get(x).setBool(true);
-           dragTile(p.getHand());
+         //  dragTile(p.getHand());
          }
        }
        else{
@@ -104,10 +122,8 @@ void dragging(Player p){
           if(mouseX >= 0 && mouseX <= 750 &&
              mouseY >= 0 && mouseY <= 750){
                board[Math.round(mouseX) / 50][Math.round(mouseY) / 50].placeTile(p.getSelectedTile());
-               
-          }
-          println(p.getSelectedTile());
-          p.getHand().remove(g);
+             //  println(p.getSelectedTile());
+       //   p.getHand().remove(g);
           if(p.getHand().size() > 1){
           for(int g = 0; g < p.getHand().size(); g++){
             if(p.getHand().get(g).getBool() == true){
@@ -116,10 +132,12 @@ void dragging(Player p){
             p.getHand().get(g).setBool(false);
           }
           }
-          
           else{
-          p.getHand().remove(0);
+            p.getHand().remove(0);
           }
+          }
+          
+    
           
       }
       
@@ -133,8 +151,9 @@ void dragging(Player p){
 void dragTile(ArrayList<Tile> a){
    for(int x = 0; x < a.size(); x++){
      if(a.get(x).getBool()){
-      a.get(x).setXYCor(mouseX, mouseY); 
+      a.get(x).setXYCor(mouseX - 25, mouseY - 25); 
      }
+     a.get(x).display(a.get(x).getXCor(), a.get(x).getYCor());
    }
 }
 

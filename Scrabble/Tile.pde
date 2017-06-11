@@ -1,6 +1,7 @@
 class Tile{
     String letter;
     boolean selected = false;
+    boolean locked = false;
     int value;
     int xcor;
     int ycor;
