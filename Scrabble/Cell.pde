@@ -40,7 +40,7 @@ class Cell{
     if(t == null){
       t = ti;
     }
-}
+  }
 
   void removeTile(){
     t = null;
@@ -58,7 +58,7 @@ void display(int x, int y){
   }else{
   fill(fill1,fill2,fill3);
   }
-  rect(y,x,50,50);
+  rect(x,y,50,50);
   textAlign(CENTER);
   textSize(32);
   fill(0);

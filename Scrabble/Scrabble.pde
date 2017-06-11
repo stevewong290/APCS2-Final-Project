@@ -29,6 +29,7 @@ int screen = 0;
 int storeR;
 int storeC;
 int dragDecider;
+// 0 use HC, 1 use CC, 2 use CH
 
  
 
@@ -41,6 +42,7 @@ void setup(){
   p1.drawTile();
   p2.drawTile();
   startImg = loadImage("startscreen.jpg");
+  dragDecider = 0;
   //println(printBag());
   /*board[0][0].placeTile(bag.get(0));
   println(printBoard());
@@ -78,6 +80,12 @@ void draw(){
       updateGUI();
     }
   }
+  if(dragDecider == 0){
+     dragFromHToC(current);
+  }
+/*  if(dragDecider == 1){
+     dragFromCToC();
+  }*/
   if(screen == 1){
   background(255);
   drawBoard();
