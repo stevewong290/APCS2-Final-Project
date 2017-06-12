@@ -25,16 +25,18 @@ void placeChecker(){
 boolean checkPlacement(){
   boolean goodX = true;
   boolean goodY = true;
-  int xval = xvals.get(0);
-  int yval = yvals.get(0);
-  for(int x = 0; x<xvals.size(); x++){
-    if(xvals.get(x)!=xval){
-       goodX = false;
+  if(xvals.size() > 0){
+    int xval = xvals.get(0);
+    int yval = yvals.get(0);
+    for(int x = 0; x<xvals.size(); x++){
+      if(xvals.get(x)!=xval){
+         goodX = false;
+      }
     }
-  }
-  for(int y =0; y<yvals.size(); y++){
-    if(yvals.get(y)!=yval){
-      goodY = false;
+    for(int y =0; y<yvals.size(); y++){
+      if(yvals.get(y)!=yval){
+        goodY = false;
+      }
     }
   }
   return goodX || goodY;
@@ -79,7 +81,9 @@ void p2scramble(){
 }
 
 void endTurn(){
-  updateTurn();
+  if(checkPlacement() && checkNeighbor()){
+    updateTurn();
+  }
 }
 
 void displayTurn(){
