@@ -13,17 +13,19 @@ void wordChecker(){
 }
 
 void placeChecker(){
-  if(xvals.size()>0){
-  placement= (checkPlacement() && checkNeighbor()) ;
-  }
-  if(!(xvals.size() == 0) && !placement){
-  fill(0);
-  text("INVALID PLACEMENT", 250,850);
-  }
   if(turn == 1 && board[7][7].getTile()==null){
     fill(0);
   text("INVALID PLACEMENT: First Move Must Be On Pink", 400,850);
   }
+  else {
+    if(xvals.size()>0){
+    placement= (checkPlacement() && checkNeighbor()) ;
+    }
+    if(!(xvals.size() == 0) && !placement){
+    fill(0);
+    text("INVALID PLACEMENT", 250,850);
+    }
+  }  
 }
 
 boolean checkPlacement(){
@@ -91,8 +93,8 @@ void endTurn(){
 }
 
 void displayTurn(){
-  text("Turn: "+turn, 900, 700);
-  text(current.getName(), 900, 750);
+  text("Turn: "+turn, 900, 900);
+  text(current.getName(), 900, 950);
 }
 
 void updateTurn(){
@@ -129,8 +131,8 @@ void updateTurn(){
 }
 
 void displayScores(){
-  text(p1.getName() + ": "+p1.getScore(), 900,400);
-  text(p2.getName() + ": "+p2.getScore(), 900,500);
+  text(p1.getName() + ": "+p1.getScore(), 900,600);
+  text(p2.getName() + ": "+p2.getScore(), 900,700);
 }
 void calcPoints(){
   for(int r = 0; r < 15; r++){
@@ -164,9 +166,9 @@ void calcPoints(){
            
 
 void displayBagCount(){
-  text("Bag Count: "+bag.size(), 900,300);
+  text("Bag Count: "+bag.size(), 900,500);
 }
 
 void displayDictionary(){
-  text("Check Dictionary:", 1200, 300);
+  text("Check Dictionary:", 1200, 500);
 }

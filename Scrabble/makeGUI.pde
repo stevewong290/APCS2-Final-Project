@@ -4,7 +4,7 @@ void makeGUI(){
   cp5 = new ControlP5(this);
   //fill(999);
   checkWord=cp5.addTextfield("input")
-     .setPosition(1100,350)
+     .setPosition(1100,550)
      .setSize(200,40)
      .setFont(font)
      .setFocus(true)

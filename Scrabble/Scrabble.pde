@@ -7,6 +7,7 @@ Player p2 = new Player("Player 2");
 Player current = p1;
 ArrayList<Tile> bag = new ArrayList<Tile>();
 Cell[][] board;
+Cell[] exboard;
 WordBank dict;
 int turn = 0;
 
@@ -53,6 +54,7 @@ void setup(){
   p2.drawTile();
   startImg = loadImage("startscreen.jpg");
   dragDecider = 0;
+  makeExchangeBoard();
   //println(printBag());
   /*board[0][0].placeTile(bag.get(0));
   println(printBoard());
@@ -110,6 +112,7 @@ void draw(){
   displayBagCount();
   displayScores();
   displayDictionary();
+  drawExchangeBoard();
   }
   //updateTurn();
   
