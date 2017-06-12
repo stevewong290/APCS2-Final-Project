@@ -14,6 +14,7 @@ void dragFromHToC(Player p){
         (Math.round(mouseY)+35 > p.getHand().get(x).getYCor()) &&
         (Math.round(mouseY)+35 < p.getHand().get(x).getYCor() + 50)){
            p.getHand().get(x).setBool(true);
+           superiorTileSelected = true;
         }
         if(p.getHand().get(x).getBool() == true){
            p.getHand().get(x).setXYCor(mouseX, mouseY);
@@ -35,10 +36,17 @@ void dragFromHToC(Player p){
                yvals.add(new Integer(Math.round(mouseC)));
                p.getHand().get(x).setBool(false);
                p.getHand().remove(x);
+              
             }
          }
+         p.getHand().get(x).setBool(false);
+          superiorTileSelected = false;
+          
       }
    }
+  /* if(!superiorTileSelected){
+   dragFromHToE(current);
+   }*/
 }
 void dragFromCToOther(){
    if(mousePressed && mouseX > 0 && mouseX < 750 && mouseY > 0 && mouseY < 750){
@@ -90,7 +98,51 @@ void dragFromCToOther(){
      tileSelected = false;
    }
 }
-
+/*
+void dragFromHToE(Player p){
+   for(int x = 0; x < p.getHand().size(); x++){
+     if(mousePressed && Math.round(mouseX)+25 > p.getHand().get(x).getXCor() && 
+        Math.round(mouseX)+25 < p.getHand().get(x).getXCor() + 55 &&
+        Math.round(mouseY)+35 > p.getHand().get(x).getYCor() &&
+        Math.round(mouseY)+35 < p.getHand().get(x).getYCor() + 50){
+       if(
+        (Math.round(mouseX)+25 > p.getHand().get(x).getXCor()) && 
+        (Math.round(mouseX)+25 < p.getHand().get(x).getXCor() + 55) &&
+        (Math.round(mouseY)+35 > p.getHand().get(x).getYCor()) &&
+        (Math.round(mouseY)+35 < p.getHand().get(x).getYCor() + 50)){
+           p.getHand().get(x).setBool(true);
+           exchangeSelected = true;
+           p.getHand().get(x).setXYCor(mouseX, mouseY);
+        }
+        p.getHand().get(x).display(mouseX, mouseY);
+        break;
+      //  exchangeSelected = true;
+     }
+     else if(mouseX > 850 && mouseX < 1235 &&
+             mouseY > 300 && mouseY < 350 && exchangeSelected){
+            if(p.getHand().get(x).getBool() == true){
+              int y = 0;
+              while(exboard[y].getTile() != null){
+                y++;
+              }
+              exboard[y].placeTile(p.getHand().get(x));
+           //    xvals.add(new Integer(Math.round(mouseR)));
+        //       yvals.add(new Integer(Math.round(mouseC)));
+               p.getHand().remove(x);
+           //    exchangeSelected = false;
+            }
+            exchangeSelected = false;
+            p.getHand().get(x).setBool(false);
+            break;
+      }
+      else{
+      p.getHand().get(x).setBool(false);
+      exchangeSelected = false;
+      }
+     println(exchangeSelected);
+     }
+   }
+*/
 
 /*void dragFromCToH(){
    if(mousePressed && mouseX > 0 && mouseX < 750 && mouseY > 0 && mouseY < 750){

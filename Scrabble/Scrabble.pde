@@ -37,6 +37,7 @@ int mouseC = mouseY / 50;
 int dragDecider;
 boolean tileSelected;
 boolean superiorTileSelected;
+boolean exchangeSelected;
 boolean lockedstuff;
 
 //variables for points
@@ -97,8 +98,11 @@ void draw(){
       updateGUI();
     }
   }
- 
   dragFromHToC(current);
+  /*if(superiorTileSelected == false){
+  dragFromHToE(current);
+  }*/
+  
   dragFromCToOther();
  // dragFromCToH();
 /*  if(dragDecider == 1){
