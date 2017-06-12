@@ -58,7 +58,7 @@ void setup(){
   startImg = loadImage("startscreen.jpg");
   endImg = loadImage("end.jpg");
   dragDecider = 0;
-  makeExchangeBoard();
+//  makeExchangeBoard();
   //println(printBag());
   /*board[0][0].placeTile(bag.get(0));
   println(printBoard());
@@ -119,7 +119,7 @@ void draw(){
   displayBagCount();
   displayScores();
   displayDictionary();
-  drawExchangeBoard();
+ // drawExchangeBoard();
   println(pass);
   if(pass == 3){
     screen = 2;
