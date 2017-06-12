@@ -37,7 +37,10 @@ boolean tileSelected;
 boolean superiorTileSelected;
 boolean lockedstuff;
 
-
+//variables for points
+int rawWordScore = 0;
+int multiplier = 1;
+int finalWordScore = 0;
  
 
 void setup(){
@@ -105,6 +108,8 @@ void draw(){
   placeChecker();
   displayTurn();
   displayBagCount();
+  displayScores();
+  displayDictionary();
   }
   //updateTurn();
   

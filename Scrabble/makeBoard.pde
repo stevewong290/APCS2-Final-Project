@@ -102,7 +102,6 @@ void drawBoard(){
 void displayHands(){
   textSize(32);
   fill(0);  
-  text("TEST",900,700);
   text(p1.getName(), 900,50);
   text(p2.getName(),900,150);
   for(int x=0; x<p1.getHand().size(); x++){
