@@ -120,6 +120,11 @@ void updateTurn(){
     p2.drawTile();
     p2.setScore(p2.getScore()+finalWordScore);
   }
+  if(finalWordScore == 0){
+    pass++;
+  }else{
+    pass = 0;
+  }
   if(turn%2 == 0){
     current = p2;
   }else{
@@ -171,4 +176,23 @@ void displayBagCount(){
 
 void displayDictionary(){
   text("Check Dictionary:", 1200, 500);
+}
+
+void hideEverything(){
+  checkWord.setVisible(false);
+  endTurn.setVisible(false);
+  p1scramble.setVisible(false);
+  p2scramble.setVisible(false);
+}
+
+String findWinner(){
+  if(p1.getScore() > p2.getScore()){
+    return p1.getName();
+  }else{
+    if(p2.getScore() > p1.getScore()){
+      return p2.getName();
+    }else{
+      return "No One. You both lose.";
+    }
+  }
 }

@@ -26,6 +26,7 @@ Button p1scramble;
 Button p2scramble;
 Button endTurn;
 PImage startImg;
+PImage endImg;
 int screen = 0;
 
 //Steve's Drag stuff
@@ -42,6 +43,7 @@ boolean lockedstuff;
 int rawWordScore = 0;
 int multiplier = 1;
 int finalWordScore = 0;
+int pass = 0;
  
 
 void setup(){
@@ -53,6 +55,7 @@ void setup(){
   p1.drawTile();
   p2.drawTile();
   startImg = loadImage("startscreen.jpg");
+  endImg = loadImage("end.jpg");
   dragDecider = 0;
   makeExchangeBoard();
   //println(printBag());
@@ -113,6 +116,19 @@ void draw(){
   displayScores();
   displayDictionary();
   drawExchangeBoard();
+  println(pass);
+  if(pass == 3){
+    screen = 2;
+  }
+  }
+  
+  if(screen == 2){
+    hideEverything();
+    image(endImg, 0, 0, endImg.width*2, endImg.height*2);
+    fill(999);
+    textSize(50);
+    textAlign(CENTER);
+    text("The Winner is: " + findWinner(), 500 , 500);
   }
   //updateTurn();
   
