@@ -129,7 +129,7 @@ void draw(){
   if(screen == 2){
     hideEverything();
     image(endImg, 0, 0, endImg.width*2, endImg.height*2);
-    fill(999);
+    fill(255);
     textSize(50);
     textAlign(CENTER);
     text("The Winner is: " + findWinner(), 500 , 500);
